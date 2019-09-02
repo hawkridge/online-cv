@@ -46,24 +46,13 @@ function LogInForm(props) {
 					<button  style={{width: '200px'}} type='submit' disabled={ isSubmitting }>
 						{ isSubmitting ? 'Preloader' : 'Log In!'}
 					</button>
-					
-					{ props.error.logIn ?  getErrorNotification(props.error.logIn) : null }
 				</Form>
 			)}
 		</Formik>
 	);
 }
 
-function getErrorNotification(err) {
-	return (
-		<div className='Error'>
-			Something went wrong - <span>{ err }</span>
-		</div>
-	)
-}
-
 LogInForm.propTypes = {
-	error: PropTypes.object,
 	logIn: PropTypes.func.isRequired
 };
 

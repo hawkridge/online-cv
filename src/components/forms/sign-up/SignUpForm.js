@@ -16,23 +16,23 @@ function SignUpForm(props) {
 	const validate = (values) => {
 		const errors = {};
 		
-		if (!values.email) {
-			errors.email = 'Required';
-		} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-			errors.email = 'Invalid email address';
-		}
-
-		if (!values.password) {
-			errors.password = 'Required';
-		} else if (values.password.length < 6) {
-			errors.password = 'Too weak password';
-		}
-
-		if (!values.confirmPassword) {
-			errors.confirmPassword = 'Required';
-		} else if (values.password && values.confirmPassword && (values.password !== values.confirmPassword)) {
-			errors.confirmPassword = 'Passwords are not equal';
-		}
+		// if (!values.email) {
+		// 	errors.email = 'Required';
+		// } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+		// 	errors.email = 'Invalid email address';
+		// }
+		//
+		// if (!values.password) {
+		// 	errors.password = 'Required';
+		// } else if (values.password.length < 6) {
+		// 	errors.password = 'Too weak password';
+		// }
+		//
+		// if (!values.confirmPassword) {
+		// 	errors.confirmPassword = 'Required';
+		// } else if (values.password && values.confirmPassword && (values.password !== values.confirmPassword)) {
+		// 	errors.confirmPassword = 'Passwords are not equal';
+		// }
 		
 		
 		return errors;
@@ -80,24 +80,13 @@ function SignUpForm(props) {
 					<button  style={{width: '200px'}} type='submit' disabled={ isSubmitting }>
 						{ isSubmitting ? 'Preloader' : 'Sign Up!'}
 					</button>
-					{ props.error.signUp ?  getErrorNotification(props.error.signUp) : null }
 				</Form>
 			)}
 		</Formik>
 	);
 }
 
-function getErrorNotification(err) {
-	return (
-		<div className='Error'>
-			Something went wrong - <span>{ err }</span>
-		</div>
-	)
-}
-
-
 SignUpForm.propTypes = {
-	error: PropTypes.object,
 	signUp: PropTypes.func.isRequired
 };
 

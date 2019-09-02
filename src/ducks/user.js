@@ -120,7 +120,7 @@ export function* updatePhotoSaga(data) {
 		yield put({
 			type: UPDATE_USER_PHOTO_SUCCESS,
             payload: {
-			    updatedPhoto: response.data.uri
+				updatedPhoto: response.data.uri
             }
 		})
 	} catch (err) {

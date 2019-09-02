@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { authStateSelector } from '../../ducks/auth'
 import Preloader from '../preloader/Preloader'
 import ProfileAvatar from '../profileAvatar/ProfileAvatar'
+
 import {
     processStateSelector,
     userProfileSelector,
@@ -31,11 +32,11 @@ class Profile extends Component {
             </div>
             <div>
                 <span>Middle name: </span>
-                <span>{ profile.firstName || '-' }</span>
+                <span>{ profile.middleName || '-' }</span>
             </div>
             <div>
                 <span>Last name: </span>
-                <span>{ profile.firstName || '-' }</span>
+                <span>{ profile.lastName || '-' }</span>
             </div>
         </>
     )

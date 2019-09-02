@@ -58,22 +58,13 @@ export const authStateSelector = createSelector(
 	authSelector,
 	auth => auth.isAuthorized
 );
-export const apiErrorSelector = createSelector(
-	authSelector,
-	auth => auth.apiCallErrors
-);
-
 
 /* Reducer */
 
 const initialState = Record({
 	isAuthorized: !!localStorage.getItem('authToken') || false,
 	inProcess: false,
-	authToken: false,
-	apiCallErrors: {
-		logIn: false,
-		signUp: false
-	}
+	authToken: false
 });
 
 export default function reducer(state = initialState(), action) {
@@ -92,7 +83,6 @@ export default function reducer(state = initialState(), action) {
 		case LOG_IN_FAIL:
 			return state
 				.set('inProcess', false)
-				.setIn(['apiCallErrors', 'logIn'], payload.error)
 		
 		case LOG_OUT_START:
 			return state.set('inProcess', true);
@@ -110,7 +100,6 @@ export default function reducer(state = initialState(), action) {
 		case SIGN_UP_FAIL:
 			return state
 				.set('inProcess', false)
-				.setIn(['apiCallErrors', 'signUp'], payload.error);
 	}
 	
 	return state;

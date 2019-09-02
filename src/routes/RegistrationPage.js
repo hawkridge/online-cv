@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SignUpForm from '../components/forms/sign-up/SignUpForm'
-import { signUp, authStateSelector, apiErrorSelector } from '../ducks/auth'
+import { signUp, authStateSelector } from '../ducks/auth'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -9,13 +9,13 @@ import { Redirect } from 'react-router-dom'
 class RegistrationPage extends Component {
 	
 	render() {
-		const { isAuthorized, apiCallError, signUp } = this.props;
+		const { isAuthorized, signUp } = this.props;
 		
 		if ( isAuthorized ) return <Redirect to={'/user'} />;
 		
 		return (
 			<>
-				<SignUpForm error={ apiCallError } signUp={ signUp } />
+				<SignUpForm signUp={ signUp } />
 			</>
 		);
 	}
@@ -23,13 +23,11 @@ class RegistrationPage extends Component {
 
 
 RegistrationPage.propTypes = {
-	isAuthorized: PropTypes.bool.isRequired,
-	apiCallError: PropTypes.object
+	isAuthorized: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-	isAuthorized: authStateSelector(state),
-	apiCallError: apiErrorSelector(state)
+	isAuthorized: authStateSelector(state)
 });
 
 export default connect(
