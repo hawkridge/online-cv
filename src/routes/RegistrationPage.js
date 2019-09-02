@@ -11,7 +11,7 @@ class RegistrationPage extends Component {
 	render() {
 		const { isAuthorized, apiCallError, signUp } = this.props;
 		
-		if(isAuthorized) return <Redirect to={'/user'} />;
+		if ( isAuthorized ) return <Redirect to={'/user'} />;
 		
 		return (
 			<>

@@ -12,7 +12,7 @@ class ProtectedRoute extends Component {
 			<Route path={path} render={ () => {
 				return isAuthorized ?
 					( <Component /> ) :
-					( <Redirect to={'/'}/> )
+					( <Redirect to={'/'} /> )
 			} }/>
 		);
 	}

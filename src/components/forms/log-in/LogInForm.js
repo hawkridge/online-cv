@@ -44,7 +44,7 @@ function LogInForm(props) {
 					<ErrorMessage name='password' render={msg => <span style={{color: 'red'}}>{msg}</span>}/>
 					
 					<button  style={{width: '200px'}} type='submit' disabled={ isSubmitting }>
-						{ isSubmitting ? 'Loading' : 'Log In!'}
+						{ isSubmitting ? 'Preloader' : 'Log In!'}
 					</button>
 					
 					{ props.error.logIn ?  getErrorNotification(props.error.logIn) : null }

@@ -1,6 +1,5 @@
 import { API } from '../config'
 
-
 class ApiService {
 	logIn(reqParams) {
 		return API.post('/login', reqParams)
@@ -8,6 +7,23 @@ class ApiService {
 
 	signUp(reqParams) {
 		return API.post('/user/registration', reqParams)
+	}
+	
+	getUserProfile() {
+		return API.get('/user/profile')
+	}
+	
+	updateUserPhoto(reqParams) {
+		return API.post('/user/photo/update/', reqParams)
+	}
+	
+	uploadSingleImage(reqParams) {
+		return API.post('/upload/img', reqParams)
+
+	}
+	
+	uploadImages(reqParams) {
+		return API.post('/upload/imgs')
 	}
 }
 

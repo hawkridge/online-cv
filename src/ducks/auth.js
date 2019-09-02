@@ -12,12 +12,12 @@ const prefix = `${appName}/${moduleName}`;
 
 export const LOG_IN_REQUEST = `${prefix}/LOG_IN_REQUEST`;
 export const LOG_IN_START = `${prefix}/LOG_IN_START`;
-export const LOG_IN_SUCCESS = `${prefix}/LOG_IN_SUCCESS`;
+export const LOG_IN_SUCCESS = `LOG_IN_SUCCESS`;
 export const LOG_IN_FAIL = `${prefix}/LOG_IN_FAIL`;
 
 export const LOG_OUT_REQUEST = `${prefix}/LOG_OUT_REQUEST`;
 export const LOG_OUT_START = `${prefix}/LOG_OUT_START`;
-export const LOG_OUT_SUCCESS = `${prefix}/LOG_OUT_SUCCESS`;
+export const LOG_OUT_SUCCESS = `LOG_OUT_SUCCESS`;
 export const LOG_OUT_FAIL = `${prefix}/LOG_OUT_FAIL`;
 
 export const SIGN_UP_REQUEST = `${prefix}/SIGN_UP_REQUEST`;
@@ -63,15 +63,16 @@ export const apiErrorSelector = createSelector(
 	auth => auth.apiCallErrors
 );
 
+
 /* Reducer */
 
 const initialState = Record({
-	isAuthorized: !!localStorage.getItem('logged-in') || false,
+	isAuthorized: !!localStorage.getItem('authToken') || false,
 	inProcess: false,
-	authToken: '',
+	authToken: false,
 	apiCallErrors: {
-		logIn: '',
-		signUp: ''
+		logIn: false,
+		signUp: false
 	}
 });
 
@@ -87,6 +88,7 @@ export default function reducer(state = initialState(), action) {
 				.set('isAuthorized', true)
 				.set('inProcess', false)
 				.set('authToken', payload.token)
+
 		case LOG_IN_FAIL:
 			return state
 				.set('inProcess', false)
@@ -98,7 +100,7 @@ export default function reducer(state = initialState(), action) {
 			return state
 				.set('isAuthorized', false)
 				.set('inProcess', false)
-				.set('authToken', false);
+				.set('authToken', false)
 			
 		case SIGN_UP_START:
 			return state.set('inProcess', true);
@@ -148,11 +150,12 @@ export function* logInSaga({ payload }) {
 		yield put({
 			type: LOG_IN_SUCCESS,
 			payload: {
-				token: response.data.token
+				token: response.data.token,
+				userProfile: response.data.user
 			}
 		});
 		
-		localStorage.setItem('logged-in', 'true');
+		localStorage.setItem('authToken', `${response.data.tokenPrefix}${response.data.token}`);
 
 	} catch (err) {
 		yield put({
@@ -173,7 +176,7 @@ export function* logOutSaga() {
 		type: LOG_OUT_SUCCESS
 	});
 	
-	localStorage.removeItem('logged-in');
+	localStorage.removeItem('authToken');
 	
 }
 

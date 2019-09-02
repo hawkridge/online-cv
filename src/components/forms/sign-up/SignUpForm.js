@@ -78,7 +78,7 @@ function SignUpForm(props) {
 					</label>
 					
 					<button  style={{width: '200px'}} type='submit' disabled={ isSubmitting }>
-						{ isSubmitting ? 'Loading' : 'Sign Up!'}
+						{ isSubmitting ? 'Preloader' : 'Sign Up!'}
 					</button>
 					{ props.error.signUp ?  getErrorNotification(props.error.signUp) : null }
 				</Form>

@@ -18,18 +18,30 @@ class TopMenu extends Component {
 	getSignInBtn = () => {
 		return <Link to={'/registration'} className='test-class' >Sign up</Link>
 	};
+
+	getProfileBtn = () => {
+		return <Link to={`/user/profile`}>Profile</Link>
+	};
 	
 	render() {
 		const { isAuthorized } = this.props;
-		console.log('isAuthorized', isAuthorized);
+
 		return (
 			<header className='Top-menu'>
-				<div style={{background: 'lightgray'}}>
-					<Link to={'/'}>Main</Link> &nbsp;
-					
-					{
-						isAuthorized ? this.getLogOutBtn() : this.getSignInBtn()
-					}
+				<div style={{display: 'flex', background: 'lightgray'}} >
+					<div>
+						<Link to={'/'}>Main</Link> &nbsp;
+
+						{
+							isAuthorized ? this.getLogOutBtn() : this.getSignInBtn()
+						}
+					</div>
+
+					<div>
+						{
+							isAuthorized ? this.getProfileBtn() : null
+						}
+					</div>
 				</div>
 			</header>
 		);

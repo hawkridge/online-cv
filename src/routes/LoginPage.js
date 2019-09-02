@@ -10,7 +10,7 @@ class LoginPage extends Component {
 	render() {
 		const { isAuthorized, logIn, apiCallError } = this.props;
 		
-		if(isAuthorized) return <Redirect to={'/user'} />;
+		if ( isAuthorized ) return <Redirect to={'/user'} />;
 		
 		return (
 			<>
