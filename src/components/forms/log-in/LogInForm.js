@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import{ Formik, Form, Field, ErrorMessage } from 'formik'
+import { useTranslation } from 'react-i18next'
 
 function LogInForm(props) {
 	
@@ -8,22 +9,24 @@ function LogInForm(props) {
 		email: '',
 		password: ''
 	}
+
+	const { logIn } = props;
+	const { t } = useTranslation(['ns1']);
 	
 	const validate = (values) => {
 		const errors = {};
 		
 		if (!values.email) {
-			errors.email = 'Required';
+			errors.email = t('validation.required');
 		}
 		
 		if (!values.password) {
-			errors.password = 'Required';
+			errors.password = t('validation.required');
 		}
 		return errors;
 	};
 	
 	const handleSubmit = (values, { setSubmitting, resetForm } ) => {
-		const { logIn } = props;
 		setSubmitting(false);
 		resetForm(initialValues);
 		
@@ -44,7 +47,7 @@ function LogInForm(props) {
 					<ErrorMessage name='password' render={msg => <span style={{color: 'red'}}>{msg}</span>}/>
 					
 					<button  style={{width: '200px'}} type='submit' disabled={ isSubmitting }>
-						{ isSubmitting ? 'Preloader' : 'Log In!'}
+						{ isSubmitting ? 'Preloader' : t('buttons.login') }
 					</button>
 				</Form>
 			)}

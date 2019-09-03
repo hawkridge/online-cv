@@ -1,0 +1,30 @@
+{
+  "ns1": {
+    "buttons": {
+      "login": "Log In",
+      "signup": "Sign Up"
+    },
+    "topMenu": {
+      "buttons": {
+        "main": "Main",
+        "signup": "Sign Up",
+        "logout": "Log Out",
+        "profile": "Profile"
+      }
+    },
+    "registration": {
+      "email": "E-mail",
+      "password": "Password",
+      "confirm": "Confirm password",
+      "firstName": "First name",
+      "middleName": "Middle name",
+      "lastName": "Last name"
+    },
+    "validation": {
+      "required": "Required field",
+      "weakPassword": "Too weak password",
+      "notEqualPasswords": "Passwords are not equal",
+      "invalidEmail": "Invalid email address"
+    }
+  }
+}

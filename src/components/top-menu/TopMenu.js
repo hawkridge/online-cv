@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { authStateSelector, logOut } from '../../ducks/auth'
 import { Link } from 'react-router-dom'
+import LangSwitcher from '../langSwitcher/LangSwitcher'
+import { withTranslation } from 'react-i18next'
 
 class TopMenu extends Component {
 	
@@ -11,35 +13,38 @@ class TopMenu extends Component {
 		logOut()
 	};
 	
-	getLogOutBtn = () => {
-		return <input type="button"  value='Log out' onClick={this.handleClick} />
+	getLogOutBtn = (t) => {
+		return <input type="button"  value={ t('topMenu.buttons.logout') } onClick={this.handleClick} />
 	};
 	
-	getSignInBtn = () => {
-		return <Link to={'/registration'} className='test-class' >Sign up</Link>
+	getSignInBtn = (t) => {
+		return <Link to={'/registration'} className='test-class' >{ t('topMenu.buttons.signup') }</Link>
 	};
 
-	getProfileBtn = () => {
-		return <Link to={`/user/profile`}>Profile</Link>
+	getProfileBtn = (t) => {
+		return <Link to={`/user/profile`}>{ t('topMenu.buttons.profile') }</Link>
 	};
 	
 	render() {
-		const { isAuthorized } = this.props;
+		const { isAuthorized, t } = this.props;
 
 		return (
 			<header className='Top-menu'>
 				<div style={{display: 'flex', background: 'lightgray'}} >
 					<div>
-						<Link to={'/'}>Main</Link> &nbsp;
+						<LangSwitcher />
+					</div>
+					<div>
+						<Link to={'/'}>{ t('topMenu.buttons.main') }</Link> &nbsp;
 
 						{
-							isAuthorized ? this.getLogOutBtn() : this.getSignInBtn()
+							isAuthorized ? this.getLogOutBtn(t) : this.getSignInBtn(t)
 						}
 					</div>
 
 					<div>
 						{
-							isAuthorized ? this.getProfileBtn() : null
+							isAuthorized ? this.getProfileBtn(t) : null
 						}
 					</div>
 				</div>
@@ -59,4 +64,4 @@ export default connect(
 	{
 		logOut
 	}
-)(TopMenu);
+)(withTranslation(['ns1'])(TopMenu));

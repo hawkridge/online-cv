@@ -1,0 +1,30 @@
+{
+  "ns1": {
+    "buttons": {
+      "login": "Войти",
+      "signup": "Зарегестрироваться"
+    },
+    "topMenu": {
+      "buttons": {
+        "main": "Главная",
+        "signup": "Регистрация",
+        "logout": "Выйти",
+        "profile": "Профиль"
+      }
+    },
+    "registration": {
+      "email": "Почта",
+      "password": "Пароль",
+      "confirm": "Подтвердить пароль",
+      "firstName": "Имя",
+      "middleName": "Отчество",
+      "lastName": "Фамилия"
+    },
+    "validation": {
+      "required": "Обязательное поле",
+      "weakPassword": "Слишком короткий пароль",
+      "notEqualPasswords": "Пароли не совпадают",
+      "invalidEmail": "Не правильный почтовый адрес"
+    }
+  }
+}

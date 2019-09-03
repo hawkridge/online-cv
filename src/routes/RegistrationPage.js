@@ -5,7 +5,6 @@ import { signUp, authStateSelector } from '../ducks/auth'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-
 class RegistrationPage extends Component {
 	
 	render() {

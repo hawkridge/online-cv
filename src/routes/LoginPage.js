@@ -5,8 +5,9 @@ import { Redirect } from 'react-router-dom'
 import { logIn, authStateSelector } from '../ducks/auth'
 import LogInForm from '../components/forms/log-in/LogInForm'
 
+
 class LoginPage extends Component {
-	
+
 	render() {
 		const { isAuthorized, logIn } = this.props;
 		
